@@ -1,9 +1,15 @@
-package nio;
+package nio.client.server;
+
+import nio.client.TimeClientHandler;
 
 /**
- * Created by 60109 on 2016/8/20.
+ * User：ThinerZQ
+ * Email：thinerzq@gmail.com
+ * Date：2016/8/20 15:20
+ * Project：LearnFramework
+ * Package：nio
  */
-public class TimeServer {
+public class TimeClient {
     public static void main(String[] args) {
         int port = 9999;
         if (args != null && args.length > 0) {
@@ -13,7 +19,6 @@ public class TimeServer {
                 //采用默认值
             }
         }
-        MultiplexerTimeServer timeServer = new MultiplexerTimeServer(port);
-        new Thread(timeServer, "NIO-TimeServer").start();
+        new Thread(new TimeClientHandler("127.0.0.1", port), "NIO-TimeClient").start();
     }
 }

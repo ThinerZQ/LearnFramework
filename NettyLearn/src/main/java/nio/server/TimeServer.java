@@ -1,13 +1,9 @@
-package nio;
+package nio.server;
 
 /**
- * User：ThinerZQ
- * Email：thinerzq@gmail.com
- * Date：2016/8/20 15:20
- * Project：LearnFramework
- * Package：nio
+ * Created by 60109 on 2016/8/20.
  */
-public class TimeClient {
+public class TimeServer {
     public static void main(String[] args) {
         int port = 9999;
         if (args != null && args.length > 0) {
@@ -17,6 +13,7 @@ public class TimeClient {
                 //采用默认值
             }
         }
-        new Thread(new TimeClientHandler("127.0.0.1", port), "NIO-TimeClient").start();
+        MultiplexerTimeServer timeServer = new MultiplexerTimeServer(port);
+        new Thread(timeServer, "NIO-TimeServer").start();
     }
 }
